@@ -1,7 +1,13 @@
 -- 02_where.sql
--- SQL Practice: WHERE Clause
+-- SQL Practice: WHERE Clause (Recruiter-Ready)
 -- Repository: SQL-Practice
 -- Author: Sayed Ahmed Sami
+
+-------------------------------------------------
+-- Mini Dataset Reminder: Customers & Orders
+-------------------------------------------------
+-- customers: id, name, age, country, city, join_date
+-- orders: order_id, customer_id, total_amount, order_date
 
 -------------------------------------------------
 -- 1️⃣ Simple WHERE conditions
@@ -11,72 +17,80 @@ SELECT *
 FROM customers
 WHERE country = 'USA';
 
--- Select orders with total_amount greater than 500
+-- Select orders with total_amount greater than 300
 SELECT * 
 FROM orders
-WHERE total_amount > 500;
+WHERE total_amount > 300;
 
 -------------------------------------------------
 -- 2️⃣ WHERE with AND
 -------------------------------------------------
--- Select customers from USA aged over 25
+-- Customers from USA aged over 25
 SELECT * 
 FROM customers
 WHERE country = 'USA' AND age > 25;
 
--- Select orders from customer_id 101 with total_amount > 100
+-- Orders from customer_id 2 with total_amount over 400
 SELECT * 
 FROM orders
-WHERE customer_id = 101 AND total_amount > 100;
+WHERE customer_id = 2 AND total_amount > 400;
 
 -------------------------------------------------
 -- 3️⃣ WHERE with OR
 -------------------------------------------------
--- Select customers from USA or Canada
+-- Customers from USA or Canada
 SELECT * 
 FROM customers
 WHERE country = 'USA' OR country = 'Canada';
 
--- Select orders with total_amount > 500 or order_id < 50
+-- Orders with total_amount > 400 or order_id < 3
 SELECT * 
 FROM orders
-WHERE total_amount > 500 OR order_id < 50;
+WHERE total_amount > 400 OR order_id < 3;
 
 -------------------------------------------------
 -- 4️⃣ WHERE with NOT
 -------------------------------------------------
--- Select customers NOT from USA
+-- Customers NOT from USA
 SELECT * 
 FROM customers
 WHERE NOT country = 'USA';
 
--- Select orders NOT from customer_id 101
+-- Orders NOT from customer_id 3
 SELECT * 
 FROM orders
-WHERE NOT customer_id = 101;
+WHERE NOT customer_id = 3;
 
 -------------------------------------------------
 -- 5️⃣ WHERE with IN
 -------------------------------------------------
--- Select customers from USA, Canada, or UK
+-- Customers from USA, Canada, or UK
 SELECT * 
 FROM customers
 WHERE country IN ('USA', 'Canada', 'UK');
 
--- Select orders from order_id 10, 20, 30
+-- Orders from order_id 1, 3, 5
 SELECT * 
 FROM orders
-WHERE order_id IN (10, 20, 30);
+WHERE order_id IN (1, 3, 5);
 
 -------------------------------------------------
 -- 6️⃣ WHERE with LIKE
 -------------------------------------------------
--- Select customers whose name starts with 'A'
+-- Customers whose name starts with 'A'
 SELECT * 
 FROM customers
 WHERE name LIKE 'A%';
 
--- Select products containing 'Book' in their name
+-- Customers whose city contains 'a'
 SELECT * 
-FROM products
-WHERE product_name LIKE '%Book%';
+FROM customers
+WHERE city LIKE '%a%';
+
+-------------------------------------------------
+-- 7️⃣ Real-World Example Query
+-------------------------------------------------
+-- Suppose we want to find customers from USA or Canada who are younger than 30
+SELECT name, age, country
+FROM customers
+WHERE (country = 'USA' OR country = 'Canada') AND age < 30;
